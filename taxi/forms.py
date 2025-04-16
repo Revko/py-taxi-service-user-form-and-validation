@@ -16,10 +16,17 @@ def validate_license_number_format(license_number):
 
 
 class DriverCreationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = Driver
-        fields = UserCreationForm.Meta.fields + (
-            "first_name", "last_name", "license_number",)
+    first_name = forms.CharField(max_length=150, required=True)
+    last_name = forms.CharField(max_length=150, required=True)
+    license_number = forms.CharField(max_length=8, required=True)
+
+    # class Meta:
+    #     model = Driver
+    #     fields = UserCreationForm.Meta.fields + (
+    #         "first_name",
+    #         "last_name",
+    #         "license_number",
+    #     )
 
     def clean_license_number(self):
         license_number = self.cleaned_data["license_number"]
