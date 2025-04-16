@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "crispy_bootstrap4",
     "debug_toolbar",
+    "crispy_bootstrap4"
     "crispy_forms",
     "taxi",
 ]
