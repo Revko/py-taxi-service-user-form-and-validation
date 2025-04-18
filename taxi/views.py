@@ -65,7 +65,7 @@ class CarDetailView(LoginRequiredMixin, generic.DetailView):
 
 class ToggleAssignToCarView(LoginRequiredMixin, generic.View):
     def post(self, request, pk, *args, **kwargs):
-        car = Car.objects.get( pk=pk)
+        car = Car.objects.get(pk=pk)
         user = request.user
 
         if user in car.drivers.all():
