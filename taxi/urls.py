@@ -1,8 +1,10 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
+
 
 from .views import (
     index,
-    toggle_assign_to_car,
+    ToggleAssignToCarView,
     CarListView,
     CarDetailView,
     CarCreateView,
@@ -49,7 +51,7 @@ urlpatterns = [
     path("cars/<int:pk>/delete/", CarDeleteView.as_view(), name="car-delete"),
     path(
         "cars/<int:pk>/toggle-assign/",
-        toggle_assign_to_car,
+        ToggleAssignToCarView.as_view(),
         name="toggle-assign"
     ),
     path("drivers/", DriverListView.as_view(), name="driver-list"),
@@ -74,6 +76,8 @@ urlpatterns = [
         DriverLicenseUpdateView.as_view(),
         name="driver-update-license"
     ),
+    path("accounts/login/", auth_views.LoginView.as_view(), name="login"),
+    path("accounts/logout/", auth_views.LogoutView.as_view(), name="logout"),
 ]
 
 app_name = "taxi"

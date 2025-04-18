@@ -63,17 +63,17 @@ class CarDetailView(LoginRequiredMixin, generic.DetailView):
     model = Car
 
 
-@login_required
-def toggle_assign_to_car(request, pk):
-    car = Car.objects.get(pk=pk)
-    user = request.user
+class ToggleAssignToCarView(LoginRequiredMixin, generic.View):
+    def post(self, request, pk, *args, **kwargs):
+        car = Car.objects.get( pk=pk)
+        user = request.user
 
-    if user in car.drivers.all():
-        car.drivers.remove(user)
-    else:
-        car.drivers.add(user)
+        if user in car.drivers.all():
+            car.drivers.remove(user)
+        else:
+            car.drivers.add(user)
 
-    return redirect("taxi:car-detail", pk=pk)
+        return redirect("taxi:car-detail", pk=pk)
 
 
 class CarCreateView(LoginRequiredMixin, generic.CreateView):
